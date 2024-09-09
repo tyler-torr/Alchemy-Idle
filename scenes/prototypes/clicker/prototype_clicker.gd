@@ -2,21 +2,25 @@ class_name PrototypeClicker extends Control
 
 
 @export var label : Label
-
-var azurite : int = 0
+@export var button : Button
+@export var azurite : int = 0
 
 
 func _ready() -> void:
 	_get_nodes()
+	_connect_signals()
 	update_label_text()
 
 
 func _get_nodes() -> void:
 	label = get_node("%Label")
-	# button = get_node("%Button")
+	button = get_node("%Button")
 
 
-# Creates 1 Azurite
+func _connect_signals() -> void:
+	button.pressed.connect(_on_button_pressed)
+
+
 func create_azurite() -> void:
 	azurite += 1
 	update_label_text()
